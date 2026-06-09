@@ -92,11 +92,13 @@
         .article-item {
             background: rgba(255, 255, 255, 0.07);
             backdrop-filter: blur(12px);
-            padding: 22px 28px;
             border-radius: 16px;
             border: 1px solid rgba(255, 102, 0, 0.2);
             transition: all 0.3s;
             cursor: pointer;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
         .article-item:hover {
             transform: translateY(-6px);
@@ -104,15 +106,36 @@
             border-color: #ff6600;
             box-shadow: 0 10px 30px rgba(255, 102, 0, 0.25);
         }
+        .article-img-wrapper {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        .article-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .article-item:hover .article-img {
+            transform: scale(1.05);
+        }
+        .article-info {
+            padding: 22px 28px;
+            flex-grow: 1;
+        }
         .article-item h2 {
             color: #ffddcc;
             margin: 0;
             font-size: 1.35rem;
+            line-height: 1.4;
         }
         .article-item .meta {
             color: #94a3b8;
             font-size: 0.95rem;
-            margin-top: 8px;
+            margin-top: 10px;
         }
 
         .article-detail {
@@ -122,6 +145,14 @@
             padding: 40px;
             border-radius: 16px;
             border: 1px solid rgba(255, 102, 0, 0.25);
+        }
+        .detail-hero-img {
+            width: 100%;
+            max-height: 450px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 102, 0, 0.15);
         }
         .article-detail h2 {
             color: #ff6600;
@@ -196,6 +227,7 @@
                 date: "May 15, 2026",
                 dateObj: new Date("2026-05-15"),
                 source: "The Quantum Insider",
+                image: "https://thequantuminsider.com/wp-content/uploads/2024/03/An-artistic-representation-of-quantum-cryptography-with-glowing-particles-and-interconnected-nodes-symbolizing-secure-data-transmission-scaled.jpg", 
                 summary: `The Quantum Insider article reports that QNu Labs has been recognized as a “Global Established Leader” in the 2026 MarketsandMarkets 360Quadrants Quantum Key Distribution (QKD) evaluation.
 The evaluation reviewed more than 170 companies in the global quantum-safe cybersecurity ecosystem, with only 17 companies categorized as established leaders.
 The recognition highlights the growing importance of Quantum Key Distribution as governments and enterprises prepare for future cyber threats posed by quantum computing.
@@ -216,6 +248,7 @@ India can further strengthen its position by accelerating standards adoption, in
                 date: "May 16, 2026",
                 dateObj: new Date("2026-05-16"),
                 source: "The Quantum Insider",
+                image: "https://thequantuminsider.com/wp-content/uploads/2023/10/Delft-quantum.jpg",
                 summary: `The article argues that Europe’s success in quantum computing will depend more on developing strong talent ecosystems than only achieving technical breakthroughs.
 Quantum computing requires highly interdisciplinary collaboration involving physicists, engineers, software developers, cryogenic experts, and industry professionals.
 The author highlights the importance of “talent hubs” — concentrated ecosystems where universities, startups, investors, governments, and corporations collaborate.
@@ -236,6 +269,7 @@ India can improve by creating dedicated quantum innovation clusters, increasing 
                 date: "April 20, 2026",
                 dateObj: new Date("2026-04-20"),
                 source: "The Quantum Insider",
+                image: "https://thequantuminsider.com/wp-content/uploads/2022/03/TQI_Podcast_Wide_Background-1024x576.jpg",
                 summary: `The podcast focused on the growing convergence between quantum computing and high-performance computing (HPC), with Bob Sorensen explaining that HPC users are likely to become the earliest large-scale adopters of quantum technologies.
 Sorensen emphasized a “problem-first” adoption strategy for HPC centers: organizations should first identify computational pain points, evaluate classical solutions and costs, and only then assess whether quantum computing can deliver measurable ROI.
 He highlighted that successful quantum adoption will depend less on qubit metrics and more on solving real-world business problems such as reducing compute time, lowering queue delays, and improving scientific productivity.
@@ -258,6 +292,7 @@ From an India perspective, the podcast reinforces that the global quantum race i
                 date: "June 08, 2026",
                 dateObj: new Date("2026-06-08"),
                 source: "The Quantum Insider",
+                image: "https://thequantuminsider.com/wp-content/uploads/2023/05/US-and-Japan-flag-scaled.jpg",
                 summary: `The US and Japan announced a $1 billion strategic partnership under President Trump’s Genesis Mission, with Japan as the first international partner.
 Combined investment: $500 million from each country over five years (subject to appropriations) for joint research in quantum information science, fusion energy, advanced materials, biotechnology, AI-driven discovery, particle physics, and autonomous laboratory systems.
 Involves 11 joint research teams combining 12 DOE National Laboratories, one DOE User Facility, and 12 leading Japanese institutions (e.g., RIKEN, University of Tokyo, NIMS, KEK, J-PARC).
@@ -279,6 +314,7 @@ This complements global upstream research efforts like the US-Japan partnership 
                 date: "June 05, 2026",
                 dateObj: new Date("2026-06-05"),
                 source: "The Quantum Insider",
+                image: "https://thequantuminsider.com/wp-content/uploads/2023/04/cybersecurity-quantum-computing-scaled.jpg",
                 summary: `SEALSQ Corp (NASDAQ: LAES) announced an expansion of its quantum strategy through targeted investments and acquisitions in multiple quantum computing companies, while continuing to develop post-quantum semiconductor and security products.
 The company is building a vertically integrated “Root-to-Qubit” platform that connects its post-quantum cryptography and secure silicon (Root of Trust) with emerging quantum computing capabilities.
 SEALSQ is pursuing a multi-modality investment approach across various quantum hardware architectures (not focused on a single qubit technology) to mitigate risk and gain diversified exposure.
@@ -301,6 +337,7 @@ This positions us as a leader in delivering tangible quantum-resilient solutions
                 date: "June 04, 2026",
                 dateObj: new Date("2026-06-04"),
                 source: "The Quantum Insider",
+                image: "https://thequantuminsider.com/wp-content/uploads/2023/03/UK-quantum-computing.jpg",
                 summary: `A cross-party UK Parliamentary Group (APPG on Quantum Technologies) released a white paper warning that the UK risks repeating past mistakes in semiconductors and AI by failing to convert early quantum leadership into long-term economic value.
 The UK launched the world’s first National Quantum Technologies Programme in 2014 and has invested over £1 decade/billion in quantum computing, sensing, communications, and timing.
 National Quantum Strategy ambition: Capture 15% of the global quantum market and 15% of global private investment by 2033; quantum computing alone projected to create 148,000 jobs and add £12.9 billion to GDP by 2055.
@@ -320,6 +357,7 @@ This complements global efforts like the UK’s by showing a successful model of
                 date: "June 03, 2026",
                 dateObj: new Date("2026-06-03"),
                 source: "The Quantum Insider",
+                image: "https://thequantuminsider.com/wp-content/uploads/2023/07/Doha-Qatar.jpg",
                 summary: `Ooredoo Qatar, in partnership with Hamad Bin Khalifa University (HBKU) and Qatar’s Ministry of Defence, has deployed Qatar’s first quantum-safe communications link using Quantum Key Distribution (QKD) technology.
 The system was successfully integrated into Ooredoo’s operational telecommunications network (not just a lab demo) and has generated and distributed encryption keys across multiple fiber-link distances using dark fiber infrastructure.
 The project builds on HBKU research in collaboration with ID Quantique (Switzerland) and aims to strengthen Qatar’s cybersecurity and lay the foundation for quantum-secure digital infrastructure.
@@ -352,8 +390,13 @@ Such international milestones validate the urgency of quantum-safe networks; our
                 const div = document.createElement('div');
                 div.className = 'article-item';
                 div.innerHTML = `
-                    <h2>${article.title}</h2>
-                    <p class="meta">${article.date} • ${article.source}</p>
+                    <div class="article-img-wrapper">
+                        <img class="article-img" src="${article.image}" alt="${article.title}" onerror="this.src='https://thequantuminsider.com/wp-content/uploads/2022/10/TQI_Logo_RGB_Gradient_Icon.png'; this.style.objectFit='contain'; this.style.padding='20px';">
+                    </div>
+                    <div class="article-info">
+                        <h2>${article.title}</h2>
+                        <p class="meta">${article.date} • ${article.source}</p>
+                    </div>
                 `;
                 div.onclick = () => showArticle(article.id);
                 listContainer.appendChild(div);
@@ -377,6 +420,7 @@ Such international milestones validate the urgency of quantum-safe networks; our
                 .join('');
             
             const content = `
+                <img class="detail-hero-img" src="${article.image}" alt="${article.title}" onerror="this.style.display='none'">
                 <h2>${article.title}</h2>
                 <p class="meta"><strong>Date:</strong> ${article.date} &nbsp;&nbsp; | &nbsp;&nbsp; <strong>Source:</strong> ${article.source}</p>
                
