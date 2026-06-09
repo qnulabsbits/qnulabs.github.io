@@ -58,8 +58,10 @@
         }
         .back:hover { text-decoration: underline; }
 
+        /* Modified: Aligned to the right corner */
         .sort-container {
-            text-align: center;
+            display: flex;
+            justify-content: flex-end;
             margin-bottom: 30px;
         }
         .sort-btn {
@@ -77,11 +79,18 @@
             color: white;
         }
 
+        /* Modified: Fixed layout to 2 columns on desktop screens */
         .article-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 20px;
         }
+        @media (max-width: 768px) {
+            .article-list {
+                grid-template-columns: 1fr;
+            }
+        }
+        
         .article-item {
             background: rgba(255, 255, 255, 0.07);
             backdrop-filter: blur(12px);
@@ -137,9 +146,11 @@
             line-height: 1.85;
             color: #cbd5e1;
         }
-        .summary ol, .perspective ol {
+        /* Modified: Changed from ol to ul formatting styles */
+        .summary ul, .perspective ul {
             padding-left: 25px;
             margin: 15px 0;
+            list-style-type: disc;
         }
         .summary li, .perspective li {
             margin-bottom: 12px;
@@ -164,7 +175,7 @@
 <body>
     <div class="container">
         <a href="index.html" class="back">← Back to Home</a>
-       
+        
         <h1>Latest Articles</h1>
         <p class="subtitle">Quantum Security Perspectives</p>
 
@@ -337,98 +348,4 @@
                 dateObj: new Date("2026-06-03"),
                 source: "The Quantum Insider",
                 summary: `
-                    Ooredoo Qatar, in partnership with Hamad Bin Khalifa University (HBKU) and Qatar’s Ministry of Defence, has deployed Qatar’s first quantum-safe communications link using Quantum Key Distribution (QKD) technology.
-                    The system was successfully integrated into Ooredoo’s operational telecommunications network (not just a lab demo) and has generated and distributed encryption keys across multiple fiber-link distances using dark fiber infrastructure.
-                    The project builds on HBKU research in collaboration with ID Quantique (Switzerland) and aims to strengthen Qatar’s cybersecurity and lay the foundation for quantum-secure digital infrastructure.
-                    It demonstrates QKD’s ability to operate alongside existing telecom infrastructure, with secure key generation validated over practical distances.
-                    Dr. Saif M. Al-Kuwari (HBKU) highlighted it as a milestone for bringing quantum-secure communication into real telecom networks, paving the way for future terrestrial and satellite-based quantum links; more advanced projects are already underway.
-                    The initiative reflects Qatar’s growing national investment in quantum technologies through government-academia-industry collaboration, positioning the country in the global push toward quantum-safe networks amid rising quantum computing threats.
-                `,
-                perspective: `
-                    Qatar’s launch of its first QKD-based quantum-safe link in partnership with telecom, academia, and defence mirrors the global trend of early adoption of quantum-secure communications for critical infrastructure.
-                    We differentiate through large-scale, indigenous deployment capabilities, having already operationalized one of the world’s longest quantum communication networks at 1,000 km on standard telecom fiber, achieved rapidly and ahead of schedule under India’s National Quantum Mission.
-                    Our strength lies in field-proven, end-to-end hybrid quantum-safe platforms (QKD + QRNG + PQC) that integrate seamlessly with existing infrastructure and deliver immediate, sovereign protection for high-stakes sectors like defence, telecom, and government.
-                    India’s model of strategic autonomy enables faster, cost-effective national-scale rollouts with homegrown technology, going beyond pilot projects to create a robust quantum-resilient backbone.
-                    Such international milestones validate the urgency of quantum-safe networks; our proven track record positions us as a leader in delivering scalable, real-world solutions that complement and accelerate global quantum security efforts.
-                `,
-                link: "https://thequantuminsider.com/2026/06/03/ooredoo-hbku-ministry-of-defence-launch-qatars-first-quantum-safe-network/"
-            }
-        ];
-
-        let currentSort = 'newest';
-
-        function renderArticleList() {
-            let sorted = [...articlesData];
-            if (currentSort === 'newest') {
-                sorted.sort((a, b) => b.dateObj - a.dateObj);
-            } else {
-                sorted.sort((a, b) => a.dateObj - b.dateObj);
-            }
-
-            const listContainer = document.getElementById('articleList');
-            listContainer.innerHTML = '';
-
-            sorted.forEach(article => {
-                const div = document.createElement('div');
-                div.className = 'article-item';
-                div.innerHTML = `
-                    <h2>${article.title}</h2>
-                    <p class="meta">${article.date} • ${article.source}</p>
-                `;
-                div.onclick = () => showArticle(article.id);
-                listContainer.appendChild(div);
-            });
-        }
-
-        function toggleSort() {
-            currentSort = currentSort === 'newest' ? 'oldest' : 'newest';
-            document.getElementById('sortBtn').textContent = currentSort === 'newest' ? 'Newest First ↓' : 'Oldest First ↑';
-            renderArticleList();
-        }
-
-        function showArticle(id) {
-            const article = articlesData.find(a => a.id === id);
-            if (!article) return;
-           
-            const mapLinesToLi = (text) => text.trim().split('\n')
-                .map(line => line.trim())
-                .filter(line => line.length > 0)
-                .map(line => `<li>${line}</li>`)
-                .join('');
-            
-            const content = `
-                <h2>${article.title}</h2>
-                <p class="meta"><strong>Date:</strong> ${article.date} &nbsp;&nbsp; | &nbsp;&nbsp; <strong>Source:</strong> ${article.source}</p>
-               
-                <div class="section">
-                    <h3>Summary</h3>
-                    <div class="summary">
-                        <ol>${mapLinesToLi(article.summary)}</ol>
-                    </div>
-                </div>
-               
-                <div class="section">
-                    <h3>QNu Labs Perspective</h3>
-                    <div class="perspective">
-                        <ol>${mapLinesToLi(article.perspective)}</ol>
-                    </div>
-                </div>
-               
-                <a href="${article.link}" target="_blank" class="btn">Read Original Article →</a>
-            `;
-           
-            document.getElementById('detailContent').innerHTML = content;
-            document.getElementById('articleList').style.display = 'none';
-            document.getElementById('articleDetail').style.display = 'block';
-        }
-
-        function backToList() {
-            document.getElementById('articleList').style.display = 'block';
-            document.getElementById('articleDetail').style.display = 'none';
-        }
-
-        document.getElementById('sortBtn').addEventListener('click', toggleSort);
-        window.onload = renderArticleList;
-    </script>
-</body>
-</html>
+                    Ooredoo Qatar, in partnership with Hamad Bin Khalifa University (HBKU) and Qatar’s Ministry of Defence, has deployed Qatar’s first quantum-safe communications link using Quantum Key
