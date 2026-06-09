@@ -4,70 +4,159 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Latest Articles & Perspectives - QNu Labs</title>
-    <meta name="description" content="Quantum Security News and Expert Perspectives from QNu Labs">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        body { font-family: 'Inter', system-ui, sans-serif; }
-        .hero-bg { background: linear-gradient(135deg, #0f172a 0%, #1e2937 100%); }
-        .article-card {
-            transition: all 0.3s ease;
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+       
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #0f172a 0%, #1e2937 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
         }
-        .article-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        /* Subtle Quantum Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 25% 30%, rgba(255, 102, 0, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 75% 70%, rgba(255, 102, 0, 0.06) 0%, transparent 50%),
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 90px 90px;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.65;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+        h1 {
+            color: #ff6600;
+            text-align: center;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(255, 102, 0, 0.4);
+            font-size: 2.8rem;
+        }
+        .subtitle {
+            text-align: center;
+            color: #94a3b8;
+            margin-bottom: 50px;
+            font-size: 1.3rem;
+        }
+        .back {
+            color: #ff6600;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-block;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        .back:hover { text-decoration: underline; }
+
+        /* List View */
+        .article-item {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(12px);
+            padding: 28px;
+            margin: 20px 0;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 102, 0, 0.2);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .article-item:hover {
+            transform: translateY(-6px);
+            background: rgba(255, 255, 255, 0.12);
+            border-color: #ff6600;
+            box-shadow: 0 10px 30px rgba(255, 102, 0, 0.25);
+        }
+        .article-item h2 {
+            color: #ffddcc;
+            margin: 0 0 12px 0;
+            font-size: 1.45rem;
+            line-height: 1.4;
+        }
+        .article-item .meta {
+            color: #94a3b8;
+            font-size: 1rem;
+        }
+
+        /* Detail View */
+        .article-detail {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 102, 0, 0.25);
+        }
+        .article-detail h2 {
+            color: #ff6600;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        .meta {
+            color: #94a3b8;
+            margin-bottom: 35px;
+            font-size: 1.1rem;
+        }
+        .section {
+            margin-bottom: 50px;
+        }
+        .section h3 {
+            color: #ff8533;
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            font-weight: 600;
         }
         .bullet-list {
-            list-style-type: disc;
-            padding-left: 1.5rem;
+            padding-left: 28px;
+            line-height: 1.85;
+            font-size: 1.15rem;
         }
         .bullet-list li {
-            margin-bottom: 12px;
-            line-height: 1.7;
+            margin-bottom: 16px;
+            color: #cbd5e1;
+        }
+        .btn {
+            display: inline-block;
+            padding: 16px 36px;
+            background: #ff6600;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+        .btn:hover {
+            background: #ff8533;
+            transform: translateY(-3px);
         }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-200">
-
-    <!-- Navbar -->
-    <nav class="bg-slate-900/80 backdrop-blur-md border-b border-slate-700 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <span class="text-3xl font-bold text-orange-500">QNu</span>
-                <span class="text-2xl font-semibold">Labs</span>
-            </div>
-            <div class="flex items-center gap-8 text-lg">
-                <a href="index.html" class="hover:text-orange-400 transition-colors">Home</a>
-                <a href="index.html#solutions" class="hover:text-orange-400 transition-colors">Solutions</a>
-                <a href="#" class="text-orange-400 font-medium">Perspectives</a>
-                <a href="index.html#about" class="hover:text-orange-400 transition-colors">About</a>
-                <a href="index.html#contact" class="hover:text-orange-400 transition-colors">Contact</a>
-            </div>
-            <a href="https://www.qnulabs.com" target="_blank"
-               class="bg-orange-500 hover:bg-orange-600 px-6 py-3 rounded-xl font-medium transition-all">
-                Official Website →
-            </a>
-        </div>
-    </nav>
-
-    <!-- Hero -->
-    <section class="hero-bg py-20 text-center">
-        <div class="max-w-4xl mx-auto px-6">
-            <h1 class="text-5xl md:text-6xl font-bold mb-4">Latest Articles & Perspectives</h1>
-            <p class="text-xl text-slate-400">Quantum Security News • Expert Insights • Industry Analysis</p>
-        </div>
-    </section>
-
-    <div class="max-w-7xl mx-auto px-6 py-12">
-        <!-- Article List -->
-        <div id="articleList" class="grid md:grid-cols-2 gap-8"></div>
-
-        <!-- Article Detail View -->
-        <div id="articleDetail" class="hidden">
-            <a onclick="backToList()" class="inline-flex items-center gap-2 text-orange-400 hover:text-orange-300 mb-8 cursor-pointer text-lg">
-                ← Back to All Articles
-            </a>
-            <div id="detailContent" class="bg-slate-900 rounded-3xl p-10"></div>
+<body>
+    <div class="container">
+        <a href="index.html" class="back">← Back to Home</a>
+       
+        <h1>Latest Articles</h1>
+        <p class="subtitle">Quantum Security Perspectives</p>
+       
+        <div id="articleList"></div>
+        
+        <div id="articleDetail" class="article-detail" style="display: none;">
+            <a href="#" onclick="backToList()" class="back">← Back to Articles</a>
+            <div id="detailContent"></div>
         </div>
     </div>
 
@@ -77,6 +166,7 @@
                 id: 1,
                 title: "QNu Labs Named Quantum Key Distribution Industry Leader",
                 date: "May 15, 2026",
+                dateObj: new Date("2026-05-15"),
                 source: "The Quantum Insider",
                 summary: `The Quantum Insider article reports that QNu Labs has been recognized as a “Global Established Leader” in the 2026 MarketsandMarkets 360Quadrants Quantum Key Distribution (QKD) evaluation. The evaluation reviewed more than 170 companies in the global quantum-safe cybersecurity ecosystem, with only 17 companies categorized as established leaders. The recognition highlights the growing importance of Quantum Key Distribution as governments and enterprises prepare for future cyber threats posed by quantum computing. QNu Labs was acknowledged for its end-to-end quantum-safe cybersecurity portfolio, including QKD, QRNG, PQC, and crypto-agile platforms designed for critical infrastructure protection. The company focuses on securing sectors such as government, defence, telecom, BFSI, healthcare, and critical infrastructure with deployment-ready quantum communication solutions. CEO Sunil Gupta emphasized that quantum-safe security is now a present-day necessity rather than a future concern. The article also positions QNu Labs as a major player in India’s indigenous quantum cybersecurity ecosystem.`,
                 perspective: `QNu Labs’ recognition validates India’s capability to build globally competitive quantum-safe cybersecurity technologies rather than depending entirely on imported solutions. The article reinforces India’s need for sovereign quantum communication infrastructure, especially for defence, telecom, BFSI, and critical infrastructure sectors. Our approach of combining QKD, PQC, QRNG, and crypto-agility into an integrated platform aligns with the global shift toward end-to-end quantum-safe ecosystems. Global leadership in quantum security now depends equally on deployment readiness, scalability, interoperability, and ecosystem partnerships. India can further strengthen its position by accelerating standards adoption, indigenous component manufacturing, public-private collaboration, and large-scale quantum network deployments.`,
@@ -86,6 +176,7 @@
                 id: 2,
                 title: "Why Europe’s Quantum Future Depends on Talent Hubs, Not Just Tech Milestones",
                 date: "May 16, 2026",
+                dateObj: new Date("2026-05-16"),
                 source: "The Quantum Insider",
                 summary: `The article argues that Europe’s success in quantum computing will depend more on developing strong talent ecosystems than only achieving technical breakthroughs. Quantum computing requires highly interdisciplinary collaboration involving physicists, engineers, software developers, cryogenic experts, and industry professionals. The author highlights the importance of “talent hubs” — concentrated ecosystems where universities, startups, investors, governments, and corporations collaborate. European cities such as Delft, Copenhagen, Paris, Munich, and Innsbruck are emerging as major quantum innovation clusters. The next phase of quantum computing is primarily a systems-engineering challenge. Europe is gaining momentum because of stronger startup ecosystems and collaboration between academia and industry. Quantum technologies will scale successfully only if Europe invests early in education and workforce development.`,
                 perspective: `The article strongly reflects India’s current opportunity: building quantum talent ecosystems will be as important as developing quantum technologies themselves. QNu Labs’ collaborations with academia, government bodies, startups, and industry demonstrate the importance of creating interconnected innovation ecosystems. India has strong foundational talent in engineering, cryptography, and software, but requires deeper specialization in quantum hardware, photonics, cryogenics, and systems engineering. A key learning is that commercialization success in quantum technologies depends on multidisciplinary collaboration, workforce development, and practical deployment experience. India can improve by creating dedicated quantum innovation clusters, increasing industry-led training programs, supporting startup incubation, and enabling faster transition from research to real-world deployment.`,
@@ -95,6 +186,7 @@
                 id: 3,
                 title: "Podcast with Bob Sorensen, Chief Quantum Analyst, Hyperion Research",
                 date: "April 20, 2026",
+                dateObj: new Date("2026-04-20"),
                 source: "The Quantum Insider",
                 summary: `The podcast focused on the growing convergence between quantum computing and high-performance computing (HPC), with Bob Sorensen explaining that HPC users are likely to become the earliest large-scale adopters of quantum technologies. Sorensen emphasized a “problem-first” adoption strategy for HPC centers: organizations should first identify computational pain points, evaluate classical solutions and costs, and only then assess whether quantum computing can deliver measurable ROI. He highlighted that successful quantum adoption will depend less on qubit metrics and more on solving real-world business problems such as reducing compute time, lowering queue delays, and improving scientific productivity. The discussion explored cloud versus on-prem quantum deployment, with Sorensen noting that cloud provides access to cutting-edge systems quickly, while on-prem infrastructure can become more economical for organizations with stable and high utilization workloads. Sorensen argued that quantum hardware will require modular upgrade paths and shorter refresh cycles compared to traditional HPC systems because quantum technology is evolving much faster than classical computing infrastructure. A major theme was that HPC managers are primarily concerned about seamless integration rather than the quantum technology itself.`,
                 perspective: `The podcast’s emphasis on “problem-first quantum adoption” strongly aligns with QNu Labs’ philosophy of building deployable quantum cybersecurity solutions rather than pursuing quantum technology purely for research prestige. Bob Sorensen’s point that hybrid quantum-classical infrastructure will define early adoption is highly relevant to QNu Labs’ approach. The discussion around “real-world utility over qubit counts” reflects QNu Labs’ practical deployment mindset. The podcast highlighted the importance of sovereign quantum infrastructure, which is especially important for India. Sorensen’s comments on scalability and modularity are directly relevant to QNu’s long-term roadmap. The podcast’s focus on operational integration rather than isolated quantum hardware mirrors QNu Labs’ “platform approach.” From an India perspective, the podcast reinforces that the global quantum race is no longer only about computing supremacy — it is equally about secure communications and cyber resilience.`,
@@ -104,6 +196,7 @@
                 id: 4,
                 title: "US and Japan Commit $1 Billion to Joint Quantum and Advanced Computing Research",
                 date: "June 08, 2026",
+                dateObj: new Date("2026-06-08"),
                 source: "The Quantum Insider",
                 summary: `The US and Japan announced a $1 billion strategic partnership under President Trump’s Genesis Mission, with Japan as the first international partner. Combined investment: $500 million from each country over five years (subject to appropriations) for joint research in quantum information science, fusion energy, advanced materials, biotechnology, AI-driven discovery, particle physics, and autonomous laboratory systems. Involves 11 joint research teams combining 12 DOE National Laboratories, one DOE User Facility, and 12 leading Japanese institutions (e.g., RIKEN, University of Tokyo, NIMS, KEK, J-PARC). Key focus: Developing next-generation autonomous laboratories using AI and robotics, advancing particle accelerator technologies, and leveraging high-performance computing (DOE systems + Japan’s Fugaku supercomputer) for AI-driven research.`,
                 perspective: `The US-Japan initiative is a major boost for broad foundational R&D in quantum information science, AI-computing integration, and related frontier technologies through large-scale, multi-institutional collaboration. We differentiate by focusing on practical, deployable quantum-safe cybersecurity and secure communication networks that deliver immediate protection against quantum threats like “Harvest Now, Decrypt Later” attacks. India has already achieved one of the world’s longest operational quantum communication networks: 1,000 km of quantum-secured links on standard telecom fiber, completed well ahead of schedule under the National Quantum Mission. Emphasis on indigenous hybrid platforms integrating QKD (up to 200 km per link without amplification), QRNG, PQC, enabling seamless coexistence with classical infrastructure for real-world deployments in defense, telecom, finance, and government.`,
@@ -113,6 +206,7 @@
                 id: 5,
                 title: "SEALSQ Expands Quantum Strategy Through Investments in Quantum Computing Companies",
                 date: "June 05, 2026",
+                dateObj: new Date("2026-06-05"),
                 source: "The Quantum Insider",
                 summary: `SEALSQ Corp (NASDAQ: LAES) announced an expansion of its quantum strategy through targeted investments and acquisitions in multiple quantum computing companies, while continuing to develop post-quantum semiconductor and security products. The company is building a vertically integrated “Root-to-Qubit” platform that connects its post-quantum cryptography and secure silicon (Root of Trust) with emerging quantum computing capabilities. SEALSQ is pursuing a multi-modality investment approach across various quantum hardware architectures to mitigate risk and gain diversified exposure.`,
                 perspective: `The SEALSQ approach of investing across multiple quantum computing modalities to build a “Root-to-Qubit” stack reflects a growing industry trend of vertical integration between post-quantum security and quantum hardware. We differentiate through deep specialization in practical, field-deployed quantum-safe communication networks using indigenous QKD technology, rather than broad financial investments in upstream quantum computing hardware. India has already delivered one of the world’s longest operational quantum-secured networks (1,000 km on standard telecom fiber), achieved rapidly under the National Quantum Mission, demonstrating real-world readiness far ahead of schedule.`,
@@ -122,6 +216,7 @@
                 id: 6,
                 title: "UK Risks Repeating Semiconductor and AI Mistakes Unless Government Acts Now on Quantum",
                 date: "June 04, 2026",
+                dateObj: new Date("2026-06-04"),
                 source: "The Quantum Insider",
                 summary: `A cross-party UK Parliamentary Group (APPG on Quantum Technologies) released a white paper warning that the UK risks repeating past mistakes in semiconductors and AI by failing to convert early quantum leadership into long-term economic value. The UK launched the world’s first National Quantum Technologies Programme in 2014 and has invested over £1 billion in quantum computing, sensing, communications, and timing. Key barriers identified: Shortage of late-stage growth capital, talent pipeline issues, weak government procurement, and limited support for quantum networking.`,
                 perspective: `The UK report highlights a common challenge: strong foundational research and early investment do not automatically translate into commercial leadership without decisive action on deployment, scale-up, and policy coherence. We differentiate through proven, rapid real-world deployment of quantum-safe technologies, having already built one of the world’s longest operational quantum communication networks (1,000 km on standard telecom fiber) well ahead of schedule under India’s National Quantum Mission. India’s approach emphasizes strategic autonomy and indigenous innovation, delivering field-ready hybrid quantum-safe solutions (QKD + QRNG + PQC).`,
@@ -131,6 +226,7 @@
                 id: 7,
                 title: "Ooredoo, HBKU, and Ministry of Defence Launch Qatar's First Quantum-Safe Network",
                 date: "June 03, 2026",
+                dateObj: new Date("2026-06-03"),
                 source: "The Quantum Insider",
                 summary: `Ooredoo Qatar, in partnership with Hamad Bin Khalifa University (HBKU) and Qatar’s Ministry of Defence, has deployed Qatar’s first quantum-safe communications link using Quantum Key Distribution (QKD) technology. The system was successfully integrated into Ooredoo’s operational telecommunications network and has generated and distributed encryption keys across multiple fiber-link distances using dark fiber infrastructure. The project builds on HBKU research in collaboration with ID Quantique (Switzerland).`,
                 perspective: `Qatar’s launch of its first QKD-based quantum-safe link mirrors the global trend of early adoption of quantum-secure communications for critical infrastructure. We differentiate through large-scale, indigenous deployment capabilities, having already operationalized one of the world’s longest quantum communication networks at 1,000 km on standard telecom fiber. Our strength lies in field-proven, end-to-end hybrid quantum-safe platforms (QKD + QRNG + PQC) that integrate seamlessly with existing infrastructure.`,
@@ -139,27 +235,25 @@
         ];
 
         function renderArticleList() {
-            const sortedArticles = [...articlesData].sort((a, b) => new Date(b.date) - new Date(a.date));
-            const container = document.getElementById('articleList');
-            container.innerHTML = '';
-
+            const sortedArticles = [...articlesData].sort((a, b) => b.dateObj - a.dateObj);
+            const listContainer = document.getElementById('articleList');
+            listContainer.innerHTML = '';
             sortedArticles.forEach(article => {
                 const div = document.createElement('div');
-                div.className = 'article-card bg-slate-800 p-8 rounded-3xl cursor-pointer';
+                div.className = 'article-item';
                 div.innerHTML = `
-                    <h2 class="text-2xl font-semibold mb-3 text-orange-400">${article.title}</h2>
-                    <p class="text-slate-400">${article.date} • ${article.source}</p>
+                    <h2>${article.title}</h2>
+                    <p class="meta">${article.date} • ${article.source}</p>
                 `;
                 div.onclick = () => showArticle(article.id);
-                container.appendChild(div);
+                listContainer.appendChild(div);
             });
         }
 
         function textToBullets(text) {
-            return text
-                .split('. ')
-                .filter(sentence => sentence.trim().length > 10)
-                .map(sentence => `<li>${sentence.trim()}.</li>`)
+            return text.trim().split('. ')
+                .filter(s => s.length > 15)
+                .map(sentence => `<li>${sentence.trim().replace(/\.$/, '')}.</li>`)
                 .join('');
         }
 
@@ -168,47 +262,33 @@
             if (!article) return;
 
             const content = `
-                <h2 class="text-4xl font-bold mb-6">${article.title}</h2>
-                <p class="text-slate-400 mb-10">${article.date} • ${article.source}</p>
-                
-                <div class="mb-12">
-                    <h3 class="text-orange-400 text-2xl mb-6">Summary</h3>
-                    <ul class="bullet-list text-slate-300">${textToBullets(article.summary)}</ul>
+                <h2>${article.title}</h2>
+                <p class="meta"><strong>Date:</strong> ${article.date} &nbsp;&nbsp; | &nbsp;&nbsp; <strong>Source:</strong> ${article.source}</p>
+               
+                <div class="section">
+                    <h3>Summary</h3>
+                    <ul class="bullet-list">${textToBullets(article.summary)}</ul>
                 </div>
-                
-                <div class="mb-12">
-                    <h3 class="text-orange-400 text-2xl mb-6">QNu Labs Perspective</h3>
-                    <ul class="bullet-list text-slate-300">${textToBullets(article.perspective)}</ul>
+               
+                <div class="section">
+                    <h3>QNu Labs Perspective</h3>
+                    <ul class="bullet-list">${textToBullets(article.perspective)}</ul>
                 </div>
-                
-                <a href="${article.link}" target="_blank" 
-                   class="inline-block bg-orange-500 hover:bg-orange-600 px-10 py-5 rounded-2xl font-semibold text-lg">
-                    Read Original Article →
-                </a>
+               
+                <a href="${article.link}" target="_blank" class="btn">Read Original Article →</a>
             `;
-
+           
             document.getElementById('detailContent').innerHTML = content;
-            document.getElementById('articleList').classList.add('hidden');
-            document.getElementById('articleDetail').classList.remove('hidden');
+            document.getElementById('articleList').style.display = 'none';
+            document.getElementById('articleDetail').style.display = 'block';
         }
 
         function backToList() {
-            document.getElementById('articleList').classList.remove('hidden');
-            document.getElementById('articleDetail').classList.add('hidden');
+            document.getElementById('articleList').style.display = 'block';
+            document.getElementById('articleDetail').style.display = 'none';
         }
 
         window.onload = renderArticleList;
     </script>
-
-    <!-- Footer -->
-    <footer class="bg-black py-12 border-t border-slate-800 mt-20">
-        <div class="max-w-7xl mx-auto px-6 text-center text-slate-500">
-            <p class="text-lg font-medium">QNu Labs Pvt Ltd</p>
-            <p>Pioneers of Hybrid Quantum Security</p>
-            <p class="mt-1">Forbes Top 200 Companies</p>
-            <p class="mt-6 text-sm">&copy; 2026 QNu Labs. All rights reserved.</p>
-            <p class="text-xs mt-2">This is an independent showcase site.</p>
-        </div>
-    </footer>
 </body>
 </html>
