@@ -17,6 +17,14 @@
             transform: translateY(-8px);
             box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
         }
+        .bullet-list {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+        }
+        .bullet-list li {
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-200">
@@ -147,6 +155,14 @@
             });
         }
 
+        function textToBullets(text) {
+            return text
+                .split('. ')
+                .filter(sentence => sentence.trim().length > 10)
+                .map(sentence => `<li>${sentence.trim()}.</li>`)
+                .join('');
+        }
+
         function showArticle(id) {
             const article = articlesData.find(a => a.id === id);
             if (!article) return;
@@ -157,12 +173,12 @@
                 
                 <div class="mb-12">
                     <h3 class="text-orange-400 text-2xl mb-6">Summary</h3>
-                    <div class="text-slate-300 leading-relaxed">${article.summary.replace(/\n/g, '<br><br>')}</div>
+                    <ul class="bullet-list text-slate-300">${textToBullets(article.summary)}</ul>
                 </div>
                 
                 <div class="mb-12">
                     <h3 class="text-orange-400 text-2xl mb-6">QNu Labs Perspective</h3>
-                    <div class="text-slate-300 leading-relaxed">${article.perspective.replace(/\n/g, '<br><br>')}</div>
+                    <ul class="bullet-list text-slate-300">${textToBullets(article.perspective)}</ul>
                 </div>
                 
                 <a href="${article.link}" target="_blank" 
