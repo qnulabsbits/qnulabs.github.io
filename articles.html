@@ -6,7 +6,7 @@
     <title>Latest Articles - Qnulabs</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-        
+       
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
@@ -17,7 +17,6 @@
             position: relative;
             overflow-x: hidden;
         }
-        /* Subtle Quantum Background */
         body::before {
             content: '';
             position: fixed;
@@ -35,7 +34,7 @@
             opacity: 0.65;
         }
         .container {
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
             position: relative;
         }
@@ -59,15 +58,34 @@
         }
         .back:hover { text-decoration: underline; }
 
-        /* List View */
+        .sort-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .sort-btn {
+            background: rgba(255, 102, 0, 0.15);
+            color: #ff6600;
+            border: 1px solid #ff6600;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .sort-btn:hover {
+            background: #ff6600;
+            color: white;
+        }
+
         .article-list {
-            display: block;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+            gap: 20px;
         }
         .article-item {
             background: rgba(255, 255, 255, 0.07);
             backdrop-filter: blur(12px);
             padding: 22px 28px;
-            margin: 18px 0;
             border-radius: 16px;
             border: 1px solid rgba(255, 102, 0, 0.2);
             transition: all 0.3s;
@@ -90,7 +108,6 @@
             margin-top: 8px;
         }
 
-        /* Detail View */
         .article-detail {
             display: none;
             background: rgba(255, 255, 255, 0.08);
@@ -127,7 +144,6 @@
         .summary li, .perspective li {
             margin-bottom: 12px;
         }
-
         .btn {
             display: inline-block;
             padding: 14px 32px;
@@ -148,12 +164,16 @@
 <body>
     <div class="container">
         <a href="index.html" class="back">← Back to Home</a>
-        
+       
         <h1>Latest Articles</h1>
         <p class="subtitle">Quantum Security Perspectives</p>
-        
-        <div id="articleList" class="article-list"></div>
 
+        <div class="sort-container">
+            <button id="sortBtn" class="sort-btn">Newest First ↓</button>
+        </div>
+       
+        <div id="articleList" class="article-list"></div>
+        
         <div id="articleDetail" class="article-detail">
             <a href="#" onclick="backToList()" class="back">← Back to Articles</a>
             <div id="detailContent"></div>
@@ -335,11 +355,20 @@
             }
         ];
 
+        let currentSort = 'newest';
+
         function renderArticleList() {
-            const sortedArticles = [...articlesData].sort((a, b) => b.dateObj - a.dateObj);
+            let sorted = [...articlesData];
+            if (currentSort === 'newest') {
+                sorted.sort((a, b) => b.dateObj - a.dateObj);
+            } else {
+                sorted.sort((a, b) => a.dateObj - b.dateObj);
+            }
+
             const listContainer = document.getElementById('articleList');
             listContainer.innerHTML = '';
-            sortedArticles.forEach(article => {
+
+            sorted.forEach(article => {
                 const div = document.createElement('div');
                 div.className = 'article-item';
                 div.innerHTML = `
@@ -351,38 +380,43 @@
             });
         }
 
+        function toggleSort() {
+            currentSort = currentSort === 'newest' ? 'oldest' : 'newest';
+            document.getElementById('sortBtn').textContent = currentSort === 'newest' ? 'Newest First ↓' : 'Oldest First ↑';
+            renderArticleList();
+        }
+
         function showArticle(id) {
             const article = articlesData.find(a => a.id === id);
             if (!article) return;
-            
-            // Filter out empty lines from split array mapping
+           
             const mapLinesToLi = (text) => text.trim().split('\n')
                 .map(line => line.trim())
                 .filter(line => line.length > 0)
                 .map(line => `<li>${line}</li>`)
                 .join('');
-
+            
             const content = `
                 <h2>${article.title}</h2>
                 <p class="meta"><strong>Date:</strong> ${article.date} &nbsp;&nbsp; | &nbsp;&nbsp; <strong>Source:</strong> ${article.source}</p>
-                
+               
                 <div class="section">
                     <h3>Summary</h3>
                     <div class="summary">
                         <ol>${mapLinesToLi(article.summary)}</ol>
                     </div>
                 </div>
-                
+               
                 <div class="section">
                     <h3>QNu Labs Perspective</h3>
                     <div class="perspective">
                         <ol>${mapLinesToLi(article.perspective)}</ol>
                     </div>
                 </div>
-                
+               
                 <a href="${article.link}" target="_blank" class="btn">Read Original Article →</a>
             `;
-            
+           
             document.getElementById('detailContent').innerHTML = content;
             document.getElementById('articleList').style.display = 'none';
             document.getElementById('articleDetail').style.display = 'block';
@@ -393,6 +427,7 @@
             document.getElementById('articleDetail').style.display = 'none';
         }
 
+        document.getElementById('sortBtn').addEventListener('click', toggleSort);
         window.onload = renderArticleList;
     </script>
 </body>
