@@ -92,13 +92,11 @@
         .article-item {
             background: rgba(255, 255, 255, 0.07);
             backdrop-filter: blur(12px);
+            padding: 22px 28px;
             border-radius: 16px;
             border: 1px solid rgba(255, 102, 0, 0.2);
             transition: all 0.3s;
             cursor: pointer;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
         }
         .article-item:hover {
             transform: translateY(-6px);
@@ -106,36 +104,15 @@
             border-color: #ff6600;
             box-shadow: 0 10px 30px rgba(255, 102, 0, 0.25);
         }
-        .article-img-wrapper {
-            width: 100%;
-            height: 200px;
-            overflow: hidden;
-            background: rgba(0, 0, 0, 0.3);
-            position: relative;
-        }
-        .article-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-        .article-item:hover .article-img {
-            transform: scale(1.05);
-        }
-        .article-info {
-            padding: 22px 28px;
-            flex-grow: 1;
-        }
         .article-item h2 {
             color: #ffddcc;
             margin: 0;
             font-size: 1.35rem;
-            line-height: 1.4;
         }
         .article-item .meta {
             color: #94a3b8;
             font-size: 0.95rem;
-            margin-top: 10px;
+            margin-top: 8px;
         }
 
         .article-detail {
@@ -145,14 +122,6 @@
             padding: 40px;
             border-radius: 16px;
             border: 1px solid rgba(255, 102, 0, 0.25);
-        }
-        .detail-hero-img {
-            width: 100%;
-            max-height: 450px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            border: 1px solid rgba(255, 102, 0, 0.15);
         }
         .article-detail h2 {
             color: #ff6600;
@@ -227,7 +196,6 @@
                 date: "May 15, 2026",
                 dateObj: new Date("2026-05-15"),
                 source: "The Quantum Insider",
-                image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=800&auto=format&fit=crop", 
                 summary: `The Quantum Insider article reports that QNu Labs has been recognized as a “Global Established Leader” in the 2026 MarketsandMarkets 360Quadrants Quantum Key Distribution (QKD) evaluation.
 The evaluation reviewed more than 170 companies in the global quantum-safe cybersecurity ecosystem, with only 17 companies categorized as established leaders.
 The recognition highlights the growing importance of Quantum Key Distribution as governments and enterprises prepare for future cyber threats posed by quantum computing.
@@ -248,7 +216,6 @@ India can further strengthen its position by accelerating standards adoption, in
                 date: "May 16, 2026",
                 dateObj: new Date("2026-05-16"),
                 source: "The Quantum Insider",
-                image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop",
                 summary: `The article argues that Europe’s success in quantum computing will depend more on developing strong talent ecosystems than only achieving technical breakthroughs.
 Quantum computing requires highly interdisciplinary collaboration involving physicists, engineers, software developers, cryogenic experts, and industry professionals.
 The author highlights the importance of “talent hubs” — concentrated ecosystems where universities, startups, investors, governments, and corporations collaborate.
@@ -269,7 +236,6 @@ India can improve by creating dedicated quantum innovation clusters, increasing 
                 date: "April 20, 2026",
                 dateObj: new Date("2026-04-20"),
                 source: "The Quantum Insider",
-                image: "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?q=80&w=800&auto=format&fit=crop",
                 summary: `The podcast focused on the growing convergence between quantum computing and high-performance computing (HPC), with Bob Sorensen explaining that HPC users are likely to become the earliest large-scale adopters of quantum technologies.
 Sorensen emphasized a “problem-first” adoption strategy for HPC centers: organizations should first identify computational pain points, evaluate classical solutions and costs, and only then assess whether quantum computing can deliver measurable ROI.
 He highlighted that successful quantum adoption will depend less on qubit metrics and more on solving real-world business problems such as reducing compute time, lowering queue delays, and improving scientific productivity.
@@ -292,7 +258,6 @@ From an India perspective, the podcast reinforces that the global quantum race i
                 date: "June 08, 2026",
                 dateObj: new Date("2026-06-08"),
                 source: "The Quantum Insider",
-                image: "https://images.unsplash.com/photo-1534224039826-c7a0dea0e66a?q=80&w=800&auto=format&fit=crop",
                 summary: `The US and Japan announced a $1 billion strategic partnership under President Trump’s Genesis Mission, with Japan as the first international partner.
 Combined investment: $500 million from each country over five years (subject to appropriations) for joint research in quantum information science, fusion energy, advanced materials, biotechnology, AI-driven discovery, particle physics, and autonomous laboratory systems.
 Involves 11 joint research teams combining 12 DOE National Laboratories, one DOE User Facility, and 12 leading Japanese institutions (e.g., RIKEN, University of Tokyo, NIMS, KEK, J-PARC).
@@ -314,7 +279,6 @@ This complements global upstream research efforts like the US-Japan partnership 
                 date: "June 05, 2026",
                 dateObj: new Date("2026-06-05"),
                 source: "The Quantum Insider",
-                image: "https://images.unsplash.com/photo-1624969862644-791f3dc98927?q=80&w=800&auto=format&fit=crop",
                 summary: `SEALSQ Corp (NASDAQ: LAES) announced an expansion of its quantum strategy through targeted investments and acquisitions in multiple quantum computing companies, while continuing to develop post-quantum semiconductor and security products.
 The company is building a vertically integrated “Root-to-Qubit” platform that connects its post-quantum cryptography and secure silicon (Root of Trust) with emerging quantum computing capabilities.
 SEALSQ is pursuing a multi-modality investment approach across various quantum hardware architectures (not focused on a single qubit technology) to mitigate risk and gain diversified exposure.
@@ -337,7 +301,116 @@ This positions us as a leader in delivering tangible quantum-resilient solutions
                 date: "June 04, 2026",
                 dateObj: new Date("2026-06-04"),
                 source: "The Quantum Insider",
-                image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop",
                 summary: `A cross-party UK Parliamentary Group (APPG on Quantum Technologies) released a white paper warning that the UK risks repeating past mistakes in semiconductors and AI by failing to convert early quantum leadership into long-term economic value.
 The UK launched the world’s first National Quantum Technologies Programme in 2014 and has invested over £1 decade/billion in quantum computing, sensing, communications, and timing.
-National Quantum Strategy ambition: Capture 15% of the global quantum market and 15% of global private investment by 2033; quantum computing alone projected to create 148,000 jobs and add £12.9 billion to GDP by
+National Quantum Strategy ambition: Capture 15% of the global quantum market and 15% of global private investment by 2033; quantum computing alone projected to create 148,000 jobs and add £12.9 billion to GDP by 2055.
+Key barriers identified: Shortage of late-stage growth capital (beyond Series A), talent pipeline issues, weak government procurement, limited support for quantum networking, and risks to fundamental research.
+Five priority action areas: 1. Scale-up capital and investment (mobilize British Business Bank and pension funds; prevent company relocations to the US). 2. Government as early adopter/procurement in defence, healthcare, infrastructure, and secure communications. 3. Workforce and talent retention (address PhD stipends, visas, postdoc contracts, university physics departments at risk). 4. Quantum networking and a more balanced NCSC policy on Quantum Key Distribution (only £120 million allocated vs. £2 billion total quantum spend; contrast with EU’s EuroQCI). 5. Continued support for fundamental/curiosity-driven research alongside commercialisation.
+Contributors warn of talent shortages, policy inconsistencies on quantum security, and the need for sovereign supply chains to avoid losing economic benefits.`,
+                perspective: `The UK report highlights a common challenge: strong foundational research and early investment do not automatically translate into commercial leadership without decisive action on deployment, scale-up, and policy coherence.
+We differentiate through proven, rapid real-world deployment of quantum-safe technologies, having already built one of the world’s longest operational quantum communication networks (1,000 km on standard telecom fiber) well ahead of schedule under India’s National Quantum Mission.
+India’s approach emphasizes strategic autonomy and indigenous innovation, delivering field-ready hybrid quantum-safe solutions (QKD + QRNG + PQC) that protect critical infrastructure today rather than relying primarily on future scale-up funding.
+Our focus on practical, sovereign quantum-secure networks for defence, telecom, finance, and government provides immediate national security benefits and demonstrates how targeted public-private efforts can achieve fast deployment outcomes.
+This complements global efforts like the UK’s by showing a successful model of translating quantum research into deployable infrastructure quickly and cost-effectively, strengthening digital sovereignty while addressing urgent quantum threats.`,
+                link: "https://thequantuminsider.com/2026/06/04/uk-risks-repeating-semiconductor-and-ai-mistakes-unless-government-acts-now-on-quantum-warns-cross-party-parliamentary-group/"
+            },
+            {
+                id: 7,
+                title: "Ooredoo, HBKU, and Ministry of Defence Launch Qatar's First Quantum-Safe Network",
+                date: "June 03, 2026",
+                dateObj: new Date("2026-06-03"),
+                source: "The Quantum Insider",
+                summary: `Ooredoo Qatar, in partnership with Hamad Bin Khalifa University (HBKU) and Qatar’s Ministry of Defence, has deployed Qatar’s first quantum-safe communications link using Quantum Key Distribution (QKD) technology.
+The system was successfully integrated into Ooredoo’s operational telecommunications network (not just a lab demo) and has generated and distributed encryption keys across multiple fiber-link distances using dark fiber infrastructure.
+The project builds on HBKU research in collaboration with ID Quantique (Switzerland) and aims to strengthen Qatar’s cybersecurity and lay the foundation for quantum-secure digital infrastructure.
+It demonstrates QKD’s ability to operate alongside existing telecom infrastructure, with secure key generation validated over practical distances.
+Dr. Saif M. Al-Kuwari (HBKU) highlighted it as a milestone for bringing quantum-secure communication into real telecom networks, paving the way for future terrestrial and satellite-based quantum links; more advanced projects are already underway.
+The initiative reflects Qatar’s growing national investment in quantum technologies through government-academia-industry collaboration, positioning the country in the global push toward quantum-safe networks amid rising quantum computing threats.`,
+                perspective: `Qatar’s launch of its first QKD-based quantum-safe link in partnership with telecom, academia, and defence mirrors the global trend of early adoption of quantum-secure communications for critical infrastructure.
+We differentiate through large-scale, indigenous deployment capabilities, having already operationalized one of the world’s longest quantum communication networks at 1,000 km on standard telecom fiber, achieved rapidly and ahead of schedule under India’s National Quantum Mission.
+Our strength lies in field-proven, end-to-end hybrid quantum-safe platforms (QKD + QRNG + PQC) that integrate seamlessly with existing infrastructure and deliver immediate, sovereign protection for high-stakes sectors like defence, telecom, and government.
+India’s model of strategic autonomy enables faster, cost-effective national-scale rollouts with homegrown technology, going beyond pilot projects to create a robust quantum-resilient backbone.
+Such international milestones validate the urgency of quantum-safe networks; our proven track record positions us as a leader in delivering scalable, real-world solutions that complement and accelerate global quantum security efforts.`,
+                link: "https://thequantuminsider.com/2026/06/03/ooredoo-hbku-ministry-of-defence-launch-qatars-first-quantum-safe-network/"
+            }
+        ];
+
+        let currentSort = 'newest';
+
+        function renderArticleList() {
+            let sorted = [...articlesData];
+            if (currentSort === 'newest') {
+                sorted.sort((a, b) => b.dateObj - a.dateObj);
+            } else {
+                sorted.sort((a, b) => a.dateObj - b.dateObj);
+            }
+
+            const listContainer = document.getElementById('articleList');
+            listContainer.innerHTML = '';
+
+            sorted.forEach(article => {
+                const div = document.createElement('div');
+                div.className = 'article-item';
+                div.innerHTML = `
+                    <h2>${article.title}</h2>
+                    <p class="meta">${article.date} • ${article.source}</p>
+                `;
+                div.onclick = () => showArticle(article.id);
+                listContainer.appendChild(div);
+            });
+        }
+
+        function toggleSort() {
+            currentSort = currentSort === 'newest' ? 'oldest' : 'newest';
+            document.getElementById('sortBtn').textContent = currentSort === 'newest' ? 'Newest First ↓' : 'Oldest First ↑';
+            renderArticleList();
+        }
+
+        function showArticle(id) {
+            const article = articlesData.find(a => a.id === id);
+            if (!article) return;
+            
+            const mapLinesToLi = (text) => text.trim().split('\n')
+                .map(line => line.trim())
+                .filter(line => line.length > 0)
+                .map(line => `<li>${line}</li>`)
+                .join('');
+            
+            const content = `
+                <h2>${article.title}</h2>
+                <p class="meta"><strong>Date:</strong> ${article.date} &nbsp;&nbsp; | &nbsp;&nbsp; <strong>Source:</strong> ${article.source}</p>
+               
+                <div class="section">
+                    <h3>Summary</h3>
+                    <div class="summary">
+                        <ul>${mapLinesToLi(article.summary)}</ul>
+                    </div>
+                </div>
+               
+                <div class="section">
+                    <h3>QNu Labs Perspective</h3>
+                    <div class="perspective">
+                        <ul>${mapLinesToLi(article.perspective)}</ul>
+                    </div>
+                </div>
+               
+                <a href="${article.link}" target="_blank" class="btn">Read Original Article →</a>
+            `;
+           
+            document.getElementById('detailContent').innerHTML = content;
+            document.getElementById('articleList').style.display = 'none';
+            document.getElementById('articleDetail').style.display = 'block';
+            document.querySelector('.sort-container').style.display = 'none';
+        }
+
+        function backToList() {
+            document.getElementById('articleList').style.display = 'grid';
+            document.getElementById('articleDetail').style.display = 'none';
+            document.querySelector('.sort-container').style.display = 'flex';
+        }
+
+        document.getElementById('sortBtn').addEventListener('click', toggleSort);
+        window.onload = renderArticleList;
+    </script>
+</body>
+</html>
