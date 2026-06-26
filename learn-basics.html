@@ -1,1 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QNu Labs | Learn Quantum Basics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="quantum-basics.css">
+    <style>
+        body { font-family: 'Inter', system-ui, sans-serif; }
+        .hero-bg {
+            background: radial-gradient(circle at 50% 50%, #1e1b4b 0%, #0f172a 50%, #020617 100%);
+            background-size: 200% 200%;
+            animation: pulseGlow 15s ease infinite;
+            position: relative;
+        }
+        .hero-bg::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(249, 115, 22, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(249, 115, 22, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: center;
+            mask-image: radial-gradient(circle at 50% 50%, black, transparent 80%);
+        }
+        @keyframes pulseGlow {
+            0% { background-position: 0% 50% }
+            50% { background-position: 100% 50% }
+            100% { background-position: 0% 50% }
+        }
+        .quantum-glow {
+            text-shadow: 0 0 30px rgba(249, 115, 22, 0.4), 0 0 60px rgba(249, 115, 22, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-[#020617] text-slate-200 min-h-screen flex flex-col justify-between hero-bg">
 
+    <!-- NAVIGATION BAR -->
+    <nav class="bg-[#1e1b4b]/40 backdrop-blur-xl border-b border-indigo-950/50 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <a href="index.html"><img src="QNU LOGO.jpg" alt="QNu Labs Logo" class="h-12 w-auto object-contain"></a>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8 text-base font-medium text-slate-300">
+                <a href="index.html" class="hover:text-orange-400 transition-colors">Home</a>
+                <div class="relative group py-2">
+                    <button class="hover:text-orange-400 transition-colors flex items-center gap-1 focus:outline-none">
+                        Solutions <i class="fas fa-chevron-down text-[10px] ml-1 opacity-70 group-hover:rotate-180 transition-transform duration-300"></i>
+                    </button>
+                    <div class="absolute left-1/2 -translate-x-1/2 mt-3 w-60 bg-slate-900/90 backdrop-blur-xl border border-slate-800 rounded-2xl shadow-2xl hidden group-hover:block transition-all z-50 p-2">
+                        <a href="https://www.qnulabs.com/quantum-key-distribution" target="_blank" class="block px-4 py-3 rounded-xl text-sm hover:bg-slate-800 hover:text-orange-400 transition-all">Armos (QKD)</a>
+                        <a href="https://www.qnulabs.com/quantum-random-number-generator" target="_blank" class="block px-4 py-3 rounded-xl text-sm hover:bg-slate-800 hover:text-orange-400 transition-all">Tropos (QRNG)</a>
+                        <a href="https://www.qnulabs.com/quantum-security-platform" target="_blank" class="block px-4 py-3 rounded-xl text-sm hover:bg-slate-800 hover:text-orange-400 transition-all">QShield (Platform)</a>
+                        <a href="https://www.qnulabs.com/post-quantum-cryptography" target="_blank" class="block px-4 py-3 rounded-xl text-sm hover:bg-slate-800 hover:text-orange-400 transition-all">Hodos (PQC)</a>
+                    </div>
+                </div>
+            </div>
+
+            <a href="https://www.qnulabs.com" target="_blank"
+               class="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 px-5 py-2.5 rounded-xl font-medium text-sm transition-all shadow-lg shadow-orange-500/10 hover:shadow-orange-500/20 text-white">
+                Official Website
+            </a>
+        </div>
+    </nav>
+
+    <!-- MAIN INTERACTIVE SECTION -->
+    <main class="max-w-6xl mx-auto px-6 py-12 relative z-10 w-full flex-grow">
+        
+        <!-- HEADER -->
+        <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400 tracking-tight quantum-glow">
+                Quinn & Aria’s <span class="text-orange-400">Quantum Universe</span>
+            </h1>
+            <p class="text-slate-400 max-w-2xl mx-auto text-base md:text-lg">
+                Shrink down past the macro world with us! Learn the core laws of nature that power the world's most advanced security networks.
+            </p>
+        </div>
+
+        <!-- CHARACTER PROFILE CARD BLOCK -->
+        <section class="bg-slate-900/40 border border-slate-800/80 rounded-3xl p-8 md:p-12 mb-16 backdrop-blur-md">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center border-b border-slate-800 pb-4">Meet Your Quantum Guides</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- ARIA CARD -->
+                <div class="bg-slate-950/60 border border-purple-500/20 rounded-2xl p-6 flex flex-col md:flex-row gap-6 items-center hover:border-purple-500/40 transition-all">
+                    <img src="watermarked_img_11893369181578003762.png" alt="Aria Profile" class="w-24 h-24 rounded-full object-cover border-2 border-purple-500">
+                    <div>
+                        <h3 class="text-xl font-bold text-white flex items-center gap-2">Aria <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20">The Guide</span></h3>
+                        <p class="text-sm text-slate-400 mt-2"><strong>Role:</strong> Senior Quantum Engineer at QNu Labs.</p>
+                        <p class="text-sm text-slate-300 mt-1">Brilliant and tech-savvy. She loves breaking down massive, spooky universe mysteries using simple everyday items.</p>
+                    </div>
+                </div>
+
+                <!-- QUINN CARD -->
+                <div class="bg-slate-950/60 border border-cyan-500/20 rounded-2xl p-6 flex flex-col md:flex-row gap-6 items-center hover:border-cyan-500/40 transition-all">
+                    <img src="watermarked_img_2331498086879364919.png" alt="Quinn Profile" class="w-24 h-24 rounded-full object-cover border-2 border-cyan-500">
+                    <div>
+                        <h3 class="text-xl font-bold text-white flex items-center gap-2">Quinn <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">The Explorer</span></h3>
+                        <p class="text-sm text-slate-400 mt-2"><strong>Role:</strong> Middle-school explorer student.</p>
+                        <p class="text-sm text-slate-300 mt-1">Easily bored by traditional equations, but ready to puzzle things out. Quinn asks the simple questions that unlock huge truths.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMIC BOOK EXPANDABLE PHASES -->
+        <section class="space-y-10">
+            <h2 class="text-2xl md:text-3xl font-bold text-center text-white mb-4">Comic Universe Directory</h2>
+
+            <!-- ISSUE 1 -->
+            <div class="bg-slate-900/30 border border-slate-800 rounded-2xl overflow-hidden hover:border-orange-500/30 transition-all">
+                <div class="p-6 md:p-8 border-b border-slate-800 bg-slate-900/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-orange-400">Phase 1 &bull; Issue 1</span>
+                        <h3 class="text-xl font-bold text-white mt-1">What on Earth is "Quantum"?</h3>
+                        <p class="text-slate-400 text-sm mt-1">Shrinking down to discover what atoms really look like.</p>
+                    </div>
+                    <button onclick="toggleComic('issue-1-box')" class="bg-slate-800 hover:bg-slate-700 text-sm font-medium px-5 py-2.5 rounded-xl transition-all border border-slate-700 self-start sm:self-auto">
+                        View Panels <i class="fas fa-chevron-down ml-2"></i>
+                    </button>
+                </div>
+                <div id="issue-1-box" class="hidden p-6 md:p-8 bg-slate-950/40 border-t border-slate-900">
+                    <img src="watermarked_img_11893369181578003762.png" alt="Issue 1 Comic Strip" class="w-full h-auto rounded-xl shadow-2xl border border-slate-800 mb-4">
+                    <p class="text-xs text-slate-500 italic text-center">Illustration: Scale comparison of Apples, Atoms, and Earth.</p>
+                </div>
+            </div>
+
+            <!-- ISSUE 2 -->
+            <div class="bg-slate-900/30 border border-slate-800 rounded-2xl overflow-hidden hover:border-orange-500/30 transition-all">
+                <div class="p-6 md:p-8 border-b border-slate-800 bg-slate-900/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-orange-400">Phase 1 &bull; Issue 2</span>
+                        <h3 class="text-xl font-bold text-white mt-1">The Spinning Coin (Superposition)</h3>
+                        <p class="text-slate-400 text-sm mt-1">Exploring states of matter where particles exist in two options simultaneously.</p>
+                    </div>
+                    <button onclick="toggleComic('issue-2-box')" class="bg-slate-800 hover:bg-slate-700 text-sm font-medium px-5 py-2.5 rounded-xl transition-all border border-slate-700 self-start sm:self-auto">
+                        View Panels <i class="fas fa-chevron-down ml-2"></i>
+                    </button>
+                </div>
+                <div id="issue-2-box" class="hidden p-6 md:p-8 bg-slate-950/40 border-t border-slate-900">
+                    <img src="watermarked_img_2331498086879364919.png" alt="Issue 2 Comic Strip" class="w-full h-auto rounded-xl shadow-2xl border border-slate-800 mb-4">
+                    <p class="text-xs text-slate-500 italic text-center">Illustration: Superposition explained via standard spinning coins.</p>
+                </div>
+            </div>
+
+            <!-- FUTURE ISSUES (LOCKED EFFECT) -->
+            <div class="bg-slate-900/10 border border-slate-900/60 rounded-2xl p-6 flex justify-between items-center opacity-40">
+                <div>
+                    <span class="text-xs font-semibold uppercase text-slate-600">Issue 3</span>
+                    <h3 class="text-lg font-bold text-slate-500">The Magic Dice (Entanglement)</h3>
+                </div>
+                <span class="text-xs bg-slate-950 border border-slate-800 px-3 py-1 rounded-full text-slate-500 font-medium">Coming Next</span>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#020617] py-6 border-t border-slate-900/60 text-center text-slate-500 w-full relative z-10">
+        <div class="max-w-7xl mx-auto px-6 text-xs space-y-1">
+            <p class="font-medium text-sm text-slate-400">&copy; 2026 QNu Labs Pvt Ltd. All rights reserved.</p>
+            <p class="opacity-70">Independent Showcase Site &bull; Forbes Top 200 Companies</p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE ACCORDION TOGGLE SCRIPT -->
+    <script>
+        function toggleComic(id) {
+            const el = document.getElementById(id);
+            if(el.classList.contains('hidden')) {
+                el.classList.remove('hidden');
+            } else {
+                el.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
