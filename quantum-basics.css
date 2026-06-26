@@ -1,1 +1,16 @@
+/* Custom styling additions for the Quantum Basics platform extension */
 
+.character-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Ensure embedded images don't break aspects inside responsive columns */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Custom interactive responsive focus behavior */
+button:active {
+    transform: scale(0.98);
+}
