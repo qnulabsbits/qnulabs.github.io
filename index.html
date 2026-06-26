@@ -38,6 +38,14 @@
         .stat-number {
             font-variant-numeric: tabular-nums;
         }
+        .article-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .article-card:hover {
+            transform: translateY(-8px);
+            border-color: rgb(249 115 22 / 0.5);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
     </style>
 </head>
 <body class="bg-[#020617] text-slate-200 min-h-screen flex flex-col">
@@ -49,7 +57,6 @@
             </div>
            
             <div class="hidden md:flex items-center gap-8 text-base font-medium text-slate-300">
-                <!-- Solutions, About, Contact dropdowns (unchanged) -->
                 <div class="relative group py-2">
                     <button class="hover:text-orange-400 transition-colors flex items-center gap-1 focus:outline-none">
                         Solutions <i class="fas fa-chevron-down text-[10px] ml-1 opacity-70 group-hover:rotate-180 transition-transform duration-300"></i>
@@ -61,7 +68,6 @@
                         <a href="https://www.qnulabs.com/post-quantum-cryptography" target="_blank" class="block px-4 py-3 rounded-xl text-sm hover:bg-slate-800 hover:text-orange-400 transition-all">Hodos (PQC)</a>
                     </div>
                 </div>
-                <!-- About & Contact dropdowns unchanged for brevity -->
                 <a href="https://www.qnulabs.com/about-us" target="_blank" class="hover:text-orange-400 transition-colors">About</a>
                 <a href="https://www.qnulabs.com/contact-us" target="_blank" class="hover:text-orange-400 transition-colors">Contact</a>
             </div>
@@ -120,52 +126,86 @@
     <!-- Featured Perspectives -->
     <section class="py-20 bg-[#0a0a1f]">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="flex justify-between items-end mb-10">
+            <div class="flex justify-between items-end mb-12">
                 <div>
                     <h2 class="text-4xl font-bold">Featured Perspectives</h2>
-                    <p class="text-slate-400 mt-2">Deep dives into the quantum security landscape</p>
+                    <p class="text-slate-400 mt-2">QNu Labs' latest insights on quantum security</p>
                 </div>
-                <a href="articles.html" class="text-orange-400 hover:text-orange-300 flex items-center gap-2 group">
-                    View all <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                <a href="articles.html" class="text-orange-400 hover:text-orange-300 flex items-center gap-2 group text-lg">
+                    View all articles 
+                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                 </a>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="bg-slate-900/70 border border-slate-800 rounded-3xl overflow-hidden hover:border-orange-500/50 transition-all group">
-                    <div class="h-48 bg-gradient-to-br from-orange-500/20 to-slate-800 flex items-center justify-center">
-                        <i class="fas fa-shield-alt text-6xl text-orange-400/30 group-hover:text-orange-400/50 transition-colors"></i>
+                <!-- Article 1 -->
+                <a href="articles/qnu-qkd-deployment.html" class="article-card block bg-slate-900/70 border border-slate-800 rounded-3xl overflow-hidden group">
+                    <div class="h-52 bg-gradient-to-br from-orange-600/30 to-slate-900 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-shield-alt text-7xl text-orange-400/40 group-hover:scale-110 transition-transform duration-500"></i>
                     </div>
                     <div class="p-8">
-                        <div class="text-xs text-orange-400 font-medium mb-2">QUANTUM CRYPTOGRAPHY • 3 DAYS AGO</div>
-                        <h3 class="text-xl font-semibold leading-tight mb-3 line-clamp-2">Why NIST PQC Standards Won't Be Enough by 2028</h3>
-                        <p class="text-slate-400 text-sm line-clamp-3">The race between quantum computers and classical encryption is accelerating faster than expected.</p>
+                        <div class="flex items-center gap-3 text-xs uppercase tracking-widest text-orange-400 mb-3">
+                            <span>QKD</span>
+                            <span class="w-1 h-1 bg-orange-400 rounded-full"></span>
+                            <span>2 DAYS AGO</span>
+                        </div>
+                        <h3 class="text-xl font-semibold leading-tight mb-4 line-clamp-3 group-hover:text-orange-400 transition-colors">
+                            QNu Labs Successfully Deploys Armos QKD System for Indian Defense Network
+                        </h3>
+                        <p class="text-slate-400 text-sm line-clamp-3">
+                            QNu Labs achieves secure key distribution over 120km fiber link using its proprietary Armos QKD solution.
+                        </p>
+                        <div class="mt-6 text-orange-400 text-sm font-medium flex items-center gap-2">
+                            Read full story <i class="fas fa-arrow-right"></i>
+                        </div>
                     </div>
-                </div>
+                </a>
 
-                <!-- Card 2 -->
-                <div class="bg-slate-900/70 border border-slate-800 rounded-3xl overflow-hidden hover:border-orange-500/50 transition-all group">
-                    <div class="h-48 bg-gradient-to-br from-blue-500/20 to-slate-800 flex items-center justify-center">
-                        <i class="fas fa-key text-6xl text-blue-400/30 group-hover:text-blue-400/50 transition-colors"></i>
+                <!-- Article 2 -->
+                <a href="articles/qnu-tropos-qrng.html" class="article-card block bg-slate-900/70 border border-slate-800 rounded-3xl overflow-hidden group">
+                    <div class="h-52 bg-gradient-to-br from-blue-600/30 to-slate-900 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-dice text-7xl text-blue-400/40 group-hover:scale-110 transition-transform duration-500"></i>
                     </div>
                     <div class="p-8">
-                        <div class="text-xs text-orange-400 font-medium mb-2">QKD • 1 WEEK AGO</div>
-                        <h3 class="text-xl font-semibold leading-tight mb-3 line-clamp-2">Real-World QKD Deployments: Lessons from Banking Sector</h3>
-                        <p class="text-slate-400 text-sm line-clamp-3">What actually works when you move from lab to production environment.</p>
+                        <div class="flex items-center gap-3 text-xs uppercase tracking-widest text-orange-400 mb-3">
+                            <span>QRNG</span>
+                            <span class="w-1 h-1 bg-orange-400 rounded-full"></span>
+                            <span>1 WEEK AGO</span>
+                        </div>
+                        <h3 class="text-xl font-semibold leading-tight mb-4 line-clamp-3 group-hover:text-orange-400 transition-colors">
+                            Tropos QRNG by QNu Labs Powers India's First Quantum-Secured Banking Transaction
+                        </h3>
+                        <p class="text-slate-400 text-sm line-clamp-3">
+                            QNu Labs’ Tropos quantum random number generator delivers true entropy for high-stakes financial systems.
+                        </p>
+                        <div class="mt-6 text-orange-400 text-sm font-medium flex items-center gap-2">
+                            Read full story <i class="fas fa-arrow-right"></i>
+                        </div>
                     </div>
-                </div>
+                </a>
 
-                <!-- Card 3 -->
-                <div class="bg-slate-900/70 border border-slate-800 rounded-3xl overflow-hidden hover:border-orange-500/50 transition-all group">
-                    <div class="h-48 bg-gradient-to-br from-purple-500/20 to-slate-800 flex items-center justify-center">
-                        <i class="fas fa-brain text-6xl text-purple-400/30 group-hover:text-purple-400/50 transition-colors"></i>
+                <!-- Article 3 -->
+                <a href="articles/qnu-quantum-resilient-roadmap.html" class="article-card block bg-slate-900/70 border border-slate-800 rounded-3xl overflow-hidden group">
+                    <div class="h-52 bg-gradient-to-br from-purple-600/30 to-slate-900 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-chart-line text-7xl text-purple-400/40 group-hover:scale-110 transition-transform duration-500"></i>
                     </div>
                     <div class="p-8">
-                        <div class="text-xs text-orange-400 font-medium mb-2">STRATEGY</div>
-                        <h3 class="text-xl font-semibold leading-tight mb-3 line-clamp-2">Building a Quantum-Resilient Enterprise Roadmap</h3>
-                        <p class="text-slate-400 text-sm line-clamp-3">A practical 3-year migration plan used by Fortune 500 CISOs.</p>
+                        <div class="flex items-center gap-3 text-xs uppercase tracking-widest text-orange-400 mb-3">
+                            <span>STRATEGY</span>
+                            <span class="w-1 h-1 bg-orange-400 rounded-full"></span>
+                            <span>10 DAYS AGO</span>
+                        </div>
+                        <h3 class="text-xl font-semibold leading-tight mb-4 line-clamp-3 group-hover:text-orange-400 transition-colors">
+                            QNu Labs Releases Quantum-Resilient Enterprise Migration Framework
+                        </h3>
+                        <p class="text-slate-400 text-sm line-clamp-3">
+                            Comprehensive 36-month roadmap developed by QNu Labs to help enterprises transition to post-quantum security.
+                        </p>
+                        <div class="mt-6 text-orange-400 text-sm font-medium flex items-center gap-2">
+                            Read full story <i class="fas fa-arrow-right"></i>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </section>
